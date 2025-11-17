@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projeto CI/CD - Front</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>🌐 Front + Vercel → Render</h1>
+    <p class="descricao">
+      Este front consome a API hospedada no Render utilizando <code>fetch()</code>.
+    </p>
+
+    <section class="config bloco">
+      <label for="apiUrl">URL da API (Render):</label>
+      <input id="apiUrl" type="url" placeholder="https://seu-back.onrender.com" />
+    </section>
+
+    <button id="btnChamar" class="botao">Testar Conexão</button>
+
+    <pre id="saida" class="terminal">Clique no botão para testar a API…</pre>
+
+    <footer class="rodape">
+      <small>🚀 CI/CD com GitHub Actions · SemVer via tags</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

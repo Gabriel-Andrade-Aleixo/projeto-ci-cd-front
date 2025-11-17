@@ -1,38 +1,34 @@
+name: Release and Deploy Workflow
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
 jobs:
-  deploy-to-vercel:
-    name: Build e Deploy para Vercel
+  build-and-deploy:
+    name: Detectar versão e publicar na Vercel
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar código do repositório
-        uses: actions/checkout@v4
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
 
-      - name: Exibir versão sendo publicada
-        run: echo "Versão detectada: ${GITHUB_REF_NAME}"
+      - name: Mostrar versão
+        run: echo "Publicando versão ${GITHUB_REF_NAME}"
 
-      # Para páginas estáticas, normalmente não há dependências.
-      # Mantive apenas para compatibilidade, caso você adicione algo futuramente.
-      - name: Instalar dependências (se houver)
-        run: npm install || true
+      - name: Instalar dependências
+        run: npm install
 
-      - name: Mostrar árvore de arquivos (debug)
-        run: ls -laR
+      - name: Gerar build
+        run: npm run build
 
-      # Somente execute build se existir script no package.json
-      - name: Executar build (opcional)
-        run: |
-          if npm run | grep -q "build"; then
-            echo "Rodando build..."
-            npm run build
-          else
-            echo "Nenhum script de build encontrado. Pulando etapa."
-          fi
-
-      - name: Publicar na Vercel
+      # Ação oficial não-oficial (de comunidade) para deploy na Vercel
+      - name: Deploy para Vercel
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: .
+          working-directory: ./
           vercel-args: '--prod'

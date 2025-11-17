@@ -17,9 +17,6 @@ jobs:
       - name: Mostrar versão
         run: echo "Publicando versão ${GITHUB_REF_NAME}"
 
-      - name: Instalar dependências
-        run: npm install
-
       - name: Gerar build
         run: npm run build
 

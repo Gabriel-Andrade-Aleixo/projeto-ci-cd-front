@@ -37,3 +37,8 @@ A resposta recebida será exibida em formato JSON na área de saída.
 
 ---
 
+
+integrantes: Hudson Ribeiro Barbara Junior.
+Gabriel Andrade Aleixo.
+Uriel Monte Paz Araujo.
+
